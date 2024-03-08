@@ -1,5 +1,16 @@
---Command line arguments :
-    While executing the program add the following arguments in corresponding order : input file, file with solutions , algorithm (+ heuristic ) you want to use choosing from FC,FC+MRV,MAC,MAC+LCV. There is an extra function in Kenken class ,check, that checks whether program output is the same as solutions(prints "EVERYTHING IS PERFECT" in that case),whether it didn't find a solution(None),or where the program output and solutions differ. Input file and solutions file must follow the same prototype as here: 
+# Kenken Puzzle
+Our goal in this assignment is given a file with the Kenken's problem to produce a solution in the most time-effective way.
+## Command Line Arguments
+
+When executing the program, provide the following arguments in the specified order: input file, file with solutions, and the algorithm (+ heuristic) you want to use. Choose from `FC`, `FC+MRV`, `MAC`, `MAC+LCV`.
+
+The `Kenken` class includes an additional function called `check`, which performs the following checks:
+- Whether the program output matches the solutions file (prints "EVERYTHING IS PERFECT" if matching).
+- Whether the program didn't find a solution (returns `None`).
+- Where the program output and solutions differ.
+
+Both the input file and solutions file must adhere to the following prototype (as input_files examples):
+
         Kenken Board Size
 
         Target#CliqueParticipants#Operation
@@ -18,15 +29,19 @@
 
         Operation: The operation performed in each clique.
 
-        The Operation can also be an equality sign for a single cell that must be implemented, even if it is not mentioned in the statement, as confirmed by the course collaborators.
+The Operation can also be an equality sign for a single cell that must be implemented, even if it is not mentioned in the statement, as confirmed by the course collaborators.
 
-        The CliqueParticipants has the format A-B-G- ... -O, with each cell of the board being a number.    
-        
-    The parsing is being made based on this model , variables' modeling follow the exact same logic as well (from 0 to size * size -1). 
+The `CliqueParticipants` has the format A-B-G- ... -O, with each cell of the board being a number.
 
---Modelization:
-    Neighbors of each variable include every other variable (but just once) with which it is involved in a constraint , variables in the same row,column and grid. Obviously it doesn't include the variable itself unless the grid's operation is "=".There is an extra class called Grid ,where we keep the list of variables in this grid,its operation and its target.In the Kenken class we keep a dictionary(var_info) that corresponds the variable to its Grid. 
+## Modelization
 
---Constraint Function :
-    We check whether the two neighbors are the same variable, then the grid operation is "=" , so we merely have to check whether variable's value is equal with target.Otherwise,we check if they're in the same row / column we check whether the variables are equal and if not we examine whether they belong to the same grid and check whether their combination as well as with the already assigned variables is acceptable accordind to target.
-    Division and subtraction are being done only with two variables.
+Variables' modeling and parsing follow the same logic as described above (from 0 to size * size -1).
+
+Neighboring variables of each variable include every other variable (but just once) with which it is involved in a constraint. This includes variables in the same row, column, and grid. The `Grid` class keeps track of the list of variables in each grid, its operation, and its target. The `Kenken` class maintains a dictionary (`var_info`) that corresponds the variable to its `Grid`.
+
+## Constraint Function
+
+The constraint function checks the following:
+- If the two neighbors are the same variable and the grid operation is "=", the function checks whether the variable's value is equal to the target.
+- If the two neighbors are in the same row/column, it checks whether the variables are equal.
+- If they don't belong to the same row/column, the function examines whether they belong to the same grid and checks whether their combination, along with the already assigned variables, is acceptable according to the target. Division and subtraction are only done with two variables.
