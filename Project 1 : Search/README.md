@@ -1,6 +1,6 @@
-In the search.py file you will find out that all functions use three data structures ; a list keeping the explored nodes , a list for finding the path to end
+In the search.py file you will find out that all functions use three data structures ; a list keeping the explored nodes , a list for finding the path to end
 goal, which we keep concatenating on every step with the new action and the
-frontier for figuring out which nodes to expand which is unique for every algorithm(check implementation for more details). In most of them we also have
+frontier for figuring out which nodes to expand which is unique for every algorithm(check implementation for more details). In most of them we also have
 another list with the nodes in the frontier for easy access.The code is based
 primarily on the slides’, but it doesn’t follow it precisely.
 In the searchAgents.py file, I will now prove why the heuristic I have come
